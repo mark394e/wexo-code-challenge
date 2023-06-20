@@ -1,0 +1,88 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  padding-left: 4rem;
+  .blurred_line {
+    position: absolute;
+    background-color: #242424;
+    background-color: hotpink;
+    top: 0;
+    right: -20px;
+    bottom: 0;
+    width: 50px;
+    height: 100%;
+    filter: blur(15px);
+    z-index: 10;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+// Embla Carousel/Slider styles
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 250px;
+  margin-right: 2rem;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  position: relative;
+
+  .embla__prev {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .embla__next {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+  }
+}
+
+.genre_title_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.genre_slider_wrapper {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
