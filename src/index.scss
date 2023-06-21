@@ -1,3 +1,6 @@
+$large: 1200px;
+$medium: 992px;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,20 +17,26 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 main {
-  padding-left: 4rem;
-  .blurred_line {
-    position: absolute;
-    background-color: #242424;
-    background-color: hotpink;
-    top: 0;
-    right: -20px;
-    bottom: 0;
-    width: 50px;
-    height: 100%;
-    filter: blur(15px);
-    z-index: 10;
-  }
+  padding-left: 2rem;
+  // .blurred_line {
+  //   position: absolute;
+  //   background-color: #242424;
+  //   background-color: hotpink;
+  //   top: 0;
+  //   right: -20px;
+  //   bottom: 0;
+  //   width: 50px;
+  //   height: 100%;
+  //   filter: blur(15px);
+  //   z-index: 10;
+  // }
 }
 
 a {
@@ -42,6 +51,25 @@ a {
   }
 }
 
+header {
+  nav {
+    ul {
+      display: flex;
+      justify-content: space-around;
+      li {
+        list-style: none;
+        transition: 0.175s ease-out;
+        &:hover {
+          background-color: hotpink;
+        }
+        .link_tag {
+          padding: 0.8rem 1.2rem;
+        }
+      }
+    }
+  }
+}
+
 // Embla Carousel/Slider styles
 .embla {
   overflow: hidden;
@@ -52,8 +80,24 @@ a {
 .embla__slide {
   flex: 0 0 auto;
   min-width: 0;
-  max-width: 250px;
+  max-width: 203px;
   margin-right: 2rem;
+}
+
+@media (min-width: $large) {
+  .embla__slide {
+    flex: 0 0 auto;
+    min-width: 0;
+    max-width: 250px;
+    margin-right: 2rem;
+  }
+  .title_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .embla__viewport {
@@ -80,9 +124,29 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  padding-right: 1rem;
+  button {
+    padding: 0.45rem 1rem;
+  }
 }
 
 .genre_slider_wrapper {
   margin-bottom: 2rem;
   margin-top: 2rem;
+}
+
+.title_wrapper {
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: center;
+  div {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    button {
+      padding: 0.45rem 1rem;
+    }
+  }
 }
