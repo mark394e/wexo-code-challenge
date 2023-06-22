@@ -63,19 +63,23 @@ function GenreSlider(props) {
           ) : (
             <>
               {slicedMoviesAndSeries.map((item, i) => {
+                // console.log(item);
+                const itemData = {
+                  entity: item,
+                  genreTitle: props.genreTitle,
+                };
+
                 return (
-                  <>
-                    <Link to="/singleview" key={i}>
-                      <div className="genre_slider_item embla__slide">
-                        <img
-                          src={item.plprogram$thumbnails["orig-295x203"].plprogram$url}
-                          alt="poster"
-                          className="movie_poster"
-                        />
-                        <h3>{item.title}</h3>
-                      </div>
-                    </Link>
-                  </>
+                  <Link to={"/singleview"} state={itemData} key={i}>
+                    <div className="genre_slider_item embla__slide">
+                      <img
+                        src={item.plprogram$thumbnails["orig-295x203"].plprogram$url}
+                        alt={item.title}
+                        className="movie_poster"
+                      />
+                      <h3>{item.title}</h3>
+                    </div>
+                  </Link>
                 );
               })}
             </>
