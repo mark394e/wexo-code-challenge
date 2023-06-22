@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function GenreSlider(props) {
   // Nødvendigt hook for at få Embla til at virke
-  const [emblaRef] = useEmblaCarousel({ dragFree: false, loop: true, align: "start" });
+  const [emblaRef] = useEmblaCarousel({ dragFree: true, loop: true, align: "start" });
 
   // states til at opbevare data fra API
   const [moviesInGenre, setMoviesInGenre] = useState([]);
@@ -18,7 +18,7 @@ function GenreSlider(props) {
   useEffect(() => {
     async function fetchMoviesInGenre() {
       const response = await fetch(
-        `https://feed.entertainment.tv.theplatform.eu/f/jGxigC/bb-all-pas?form=json&byTags=genre:${props.genreTitle}&lang=da&byProgramType=movie`
+        `https://feed.entertainment.tv.theplatform.eu/f/jGxigC/bb-all-pas?form=json&byTags=genre:${props.genreTitle}&lang=da&byProgramType=movie&range:1-20`
       );
       const dataMovieGenres = await response.json();
       // console.log(`Movies in genre - ${props.genreTitle}`, dataMovieGenres.entries);
@@ -28,7 +28,7 @@ function GenreSlider(props) {
 
     async function fetchSeriesInGenre() {
       const response = await fetch(
-        `https://feed.entertainment.tv.theplatform.eu/f/jGxigC/bb-all-pas?form=json&byTags=genre:${props.genreTitle}&lang=da&byProgramType=series`
+        `https://feed.entertainment.tv.theplatform.eu/f/jGxigC/bb-all-pas?form=json&byTags=genre:${props.genreTitle}&lang=da&byProgramType=series&range:1-20`
       );
       const dataSeriesGenres = await response.json();
       // console.log(`Series in genre - ${props.genreTitle}`, dataSeriesGenres.entries);
@@ -55,30 +55,33 @@ function GenreSlider(props) {
           <Link to="/allmovies"> Vis alle {mergedMoviesAndSeries.length}</Link>
         </button>
       </div>
-      {loading ? (
-        <ClipLoader color="#36d7b7" />
-      ) : (
-        <div className="embla" ref={emblaRef}>
-          <div className="genre_slider embla__container">
-            {slicedMoviesAndSeries.map((item, i) => {
-              return (
-                <>
-                  <Link to="/singleview" key={i}>
-                    <div className="genre_slider_item embla__slide">
-                      <img
-                        src={item.plprogram$thumbnails["orig-295x203"].plprogram$url}
-                        alt="poster"
-                        className="movie_poster"
-                      />
-                      <h3>{item.title}</h3>
-                    </div>
-                  </Link>
-                </>
-              );
-            })}
-          </div>
+
+      <div className="embla" ref={emblaRef}>
+        <div className="genre_slider embla__container">
+          {loading ? (
+            <ClipLoader color="#36d7b7" />
+          ) : (
+            <>
+              {slicedMoviesAndSeries.map((item, i) => {
+                return (
+                  <>
+                    <Link to="/singleview" key={i}>
+                      <div className="genre_slider_item embla__slide">
+                        <img
+                          src={item.plprogram$thumbnails["orig-295x203"].plprogram$url}
+                          alt="poster"
+                          className="movie_poster"
+                        />
+                        <h3>{item.title}</h3>
+                      </div>
+                    </Link>
+                  </>
+                );
+              })}
+            </>
+          )}
         </div>
-      )}
+      </div>
     </section>
   );
 }
