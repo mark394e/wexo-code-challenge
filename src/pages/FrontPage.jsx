@@ -1,8 +1,8 @@
-import GenreMenu from "../components/GenreMenu";
 import GenreSlider from "../components/GenreSlider";
-import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function FrontPage() {
+  // array med alle genrer
   const genres = [
     "Action",
     "Comedy",
@@ -22,16 +22,19 @@ function FrontPage() {
         <div className="title_wrapper">
           <h1>MOVIE SHOP DELUXE</h1>
           <div>
-            <button>Vis alle film</button>
-            <button>Vis alle serier</button>
+            <button>
+              <Link to="/allmovies">Alle film</Link>
+            </button>
+            <button>
+              <Link to="/allseries">Alle serier</Link>
+            </button>
           </div>
         </div>
-        <GenreMenu />
+        {/* der oprettes et GenreSlider-component for hver genre i arrayet */}
         {genres.map((genre, i) => (
           <GenreSlider key={i} genreTitle={genre} />
         ))}
       </main>
-      <Footer />
     </div>
   );
 }

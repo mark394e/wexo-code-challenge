@@ -1,7 +1,9 @@
 function Footer() {
   return (
-    <footer>
-      <h2>FOOTER</h2>
+    <footer className="footer">
+      <div className="footer-content">
+        <p>© 2023 Movie Shop Deluxe. All rights reserved.</p>
+      </div>
     </footer>
   );
 }

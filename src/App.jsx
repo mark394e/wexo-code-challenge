@@ -5,15 +5,13 @@ import FrontPage from "./pages/FrontPage";
 import AllMovies from "./pages/AllMovies";
 import Header from "./components/Header";
 import AllSeries from "./pages/AllSeries";
+import AllInGenre from "./pages/AllInGenre";
+import Footer from "./components/Footer";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-
-  useEffect(() => {
-    console.log(wishlist);
-  }, [wishlist]);
 
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
@@ -81,7 +79,9 @@ function App() {
         />
         <Route path="/allmovies" element={<AllMovies movies={movies} />} />
         <Route path="/allseries" element={<AllSeries series={series} />} />
+        <Route path="/allingenre" element={<AllInGenre />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

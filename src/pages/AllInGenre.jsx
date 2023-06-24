@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function AllSeries(props) {
+function AllInGenre(props) {
+  // for at sende props via Routes fra react-router-dom, skal man benytte useLocation hook
+  const location = useLocation();
+  const { media, genreTitle } = location.state;
+
   return (
     <section className="all_movies_section">
-      <h1>Alle serier</h1>
+      <h1>{genreTitle}</h1>
       <div className="all_movies_wrapper">
-        {props.series.map((serie, i) => {
+        {media.map((item, i) => {
           const itemData = {
-            entity: serie,
+            entity: item,
             genreTitle: props.genreTitle,
           };
           return (
@@ -15,11 +20,11 @@ function AllSeries(props) {
               <Link to="/singleview" state={itemData}>
                 <div className="movie">
                   <img
-                    src={serie.plprogram$thumbnails["orig-198x136"]?.plprogram$url}
-                    alt={serie.title}
+                    src={item.plprogram$thumbnails["orig-198x136"]?.plprogram$url}
+                    alt={item.title}
                     className="movie_poster"
                   />
-                  <h3>{serie.title}</h3>
+                  <h3>{item.title}</h3>
                 </div>
               </Link>
             </div>
@@ -30,4 +35,4 @@ function AllSeries(props) {
   );
 }
 
-export default AllSeries;
+export default AllInGenre;

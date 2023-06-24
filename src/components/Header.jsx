@@ -4,6 +4,7 @@ import { useState } from "react";
 function Header(props) {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
+  // skifter state til det modsatte af forrige state
   const toggleWishlist = () => {
     setIsWishlistOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -12,13 +13,12 @@ function Header(props) {
     <header>
       <nav>
         <Link to="/">
-          <div className="menu-item">
+          <div className=" home">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
               height="30"
-              fill="currentColor"
-              className="bi bi-house-fill"
+              className="bi bi-house-fill home"
               viewBox="0 0 16 16"
             >
               <path
@@ -44,7 +44,7 @@ function Header(props) {
             </Link>
           </li>
           <li>
-            <div className=" wishlist" onClick={toggleWishlist}>
+            <div className="wishlist" onClick={toggleWishlist}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -59,6 +59,7 @@ function Header(props) {
           </li>
         </ul>
       </nav>
+      {/* hvis 'isWishlistOpen' er true tilføjes klassen 'open' */}
       <div className={`wishlist-box ${isWishlistOpen ? "open" : ""}`}>
         <div className="wishlist-title-wrapper">
           <h2>Din ønskeliste</h2>
@@ -74,6 +75,7 @@ function Header(props) {
           </svg>
         </div>
         <ul>
+          {/* mapper gennem alle item i wishlist og viser dem i sidebaren */}
           {props.wishlist.map((item, i) => {
             const itemData = {
               entity: item,
